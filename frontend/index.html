@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskMaster - Professional Task Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/custom.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark">
+            <i class="fas fa-tasks"></i>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold">TaskMaster</h1>
+            <p class="sidebar-copy">Plan clearly. Execute daily.</p>
+          </div>
+        </div>
+
+        <nav class="space-y-3">
+          <button onclick="showSection('auth')" class="nav-btn" id="nav-auth">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Access</span>
+          </button>
+          <button
+            onclick="showSection('dashboard')"
+            class="nav-btn hidden"
+            id="nav-dashboard"
+          >
+            <i class="fas fa-chart-pie"></i>
+            <span>Dashboard</span>
+          </button>
+          <button
+            onclick="showSection('todos')"
+            class="nav-btn hidden"
+            id="nav-todos"
+          >
+            <i class="fas fa-list-check"></i>
+            <span>Tasks</span>
+          </button>
+          <button onclick="logout()" class="nav-btn hidden" id="nav-logout">
+            <i class="fas fa-right-from-bracket"></i>
+            <span>Logout</span>
+          </button>
+        </nav>
+
+        <div class="profile-card hidden" id="user-profile">
+          <img id="profile-image" src="" alt="Profile" class="profile-image" />
+          <div>
+            <p class="font-bold text-sm" id="user-name">User</p>
+            <p class="text-xs opacity-80 break-all" id="user-email">
+              user@example.com
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section id="auth-section" class="auth-layout">
+          <div class="auth-match-wrap">
+            <div class="auth-card">
+              <div class="auth-left">
+                <div class="auth-left-header">
+                  <div class="auth-toggle auth-toggle-compact">
+                    <button
+                      type="button"
+                      id="auth-tab-login"
+                      class="auth-tab active"
+                      onclick="switchAuthMode('login')"
+                    >
+                      Sign In
+                    </button>
+                    <button
+                      type="button"
+                      id="auth-tab-register"
+                      class="auth-tab"
+                      onclick="switchAuthMode('register')"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                </div>
+
+                <div id="auth-login-panel" class="auth-form-panel">
+                  <h2 class="auth-form-title">Welcome Back</h2>
+                  <form onsubmit="handleLogin(event)" class="auth-form">
+                    <div>
+                      <label class="form-label" for="login-email">Email</label>
+                      <input
+                        type="email"
+                        id="login-email"
+                        placeholder="name@company.com"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label class="form-label" for="login-password">Password</label>
+                      <input
+                        type="password"
+                        id="login-password"
+                        placeholder="Enter your password"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                    <button type="submit" class="btn-primary auth-submit">
+                      <span>Sign In</span>
+                    </button>
+                  </form>
+                </div>
+
+                <div id="auth-register-panel" class="auth-form-panel hidden">
+                  <h2 class="auth-form-title">Create Your Account</h2>
+                  <form onsubmit="handleRegister(event)" class="auth-form">
+                    <div>
+                      <label class="form-label" for="reg-name">Name</label>
+                      <input
+                        type="text"
+                        id="reg-name"
+                        placeholder="Your full name"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label class="form-label" for="reg-email">Email</label>
+                      <input
+                        type="email"
+                        id="reg-email"
+                        placeholder="name@company.com"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label class="form-label" for="reg-password">Password</label>
+                      <input
+                        type="password"
+                        id="reg-password"
+                        placeholder="Create a strong password"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label class="form-label" for="reg-confirm"
+                        >Confirm Password</label
+                      >
+                      <input
+                        type="password"
+                        id="reg-confirm"
+                        placeholder="Repeat your password"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                    <button type="submit" class="btn-primary auth-submit">
+                      <span>Create Account</span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              <div class="auth-right">
+                <h3 id="auth-side-title">Welcome to TaskMaster</h3>
+                <p id="auth-side-text">
+                  Create your TaskMaster account to organize tasks, track progress,
+                  and stay focused every day.
+                </p>
+                <button
+                  id="auth-side-btn"
+                  type="button"
+                  class="auth-side-btn"
+                  onclick="switchAuthMode('register')"
+                >
+                  SIGN UP
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="dashboard-section" class="hidden space-y-6">
+          <div class="section-header glass">
+            <div>
+              <p class="section-kicker">Performance</p>
+              <h2 class="section-title">Your Dashboard</h2>
+            </div>
+            <button onclick="showAddTodoModal()" class="btn-primary cta-btn text-white">
+              <i class="fas fa-plus"></i>
+              <span>Add Task</span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+            <div class="stat-box">
+              <i class="fas fa-tasks text-3xl mb-3"></i>
+              <p class="text-sm opacity-90">All Tasks</p>
+              <h3 class="text-3xl font-bold" id="stat-total">0</h3>
+              <div class="stat-meter"><span id="meter-total"></span></div>
+            </div>
+            <div class="stat-box stat-box-secondary">
+              <i class="fas fa-hourglass-start text-3xl mb-3"></i>
+              <p class="text-sm opacity-90">To Do</p>
+              <h3 class="text-3xl font-bold" id="stat-pending">0</h3>
+              <div class="stat-meter"><span id="meter-pending"></span></div>
+            </div>
+            <div class="stat-box stat-box-info">
+              <i class="fas fa-spinner text-3xl mb-3"></i>
+              <p class="text-sm opacity-90">In Progress</p>
+              <h3 class="text-3xl font-bold" id="stat-progress">0</h3>
+              <div class="stat-meter"><span id="meter-progress"></span></div>
+            </div>
+            <div class="stat-box stat-box-success">
+              <i class="fas fa-check-circle text-3xl mb-3"></i>
+              <p class="text-sm opacity-90">Done</p>
+              <h3 class="text-3xl font-bold" id="stat-completed">0</h3>
+              <div class="stat-meter"><span id="meter-completed"></span></div>
+            </div>
+          </div>
+
+          <div class="glass panel-card">
+            <h3 class="panel-title">
+              <i class="fas fa-chart-pie"></i>
+              <span>Productivity Insights</span>
+            </h3>
+            <p class="insights-subtitle">
+              Live distribution of completed, in-progress, and pending tasks.
+            </p>
+            <canvas id="statsChart"></canvas>
+          </div>
+        </section>
+
+        <section id="todos-section" class="hidden space-y-6">
+          <div class="section-header glass">
+            <div>
+              <p class="section-kicker">Task Board</p>
+              <h2 class="section-title">Task Management</h2>
+            </div>
+            <button onclick="showAddTodoModal()" class="btn-primary cta-btn text-white">
+              <i class="fas fa-plus"></i>
+              <span>Add Task</span>
+            </button>
+          </div>
+
+          <div class="glass filter-bar">
+            <div class="filter-group">
+              <p class="filter-title">Status</p>
+              <div class="filter-chips" id="status-chips">
+                <button
+                  type="button"
+                  class="filter-chip active"
+                  onclick="setFilter('status', '', this)"
+                >
+                  All
+                </button>
+                <button
+                  type="button"
+                  class="filter-chip"
+                  onclick="setFilter('status', 'pending', this)"
+                >
+                  Pending
+                </button>
+                <button
+                  type="button"
+                  class="filter-chip"
+                  onclick="setFilter('status', 'in-progress', this)"
+                >
+                  In Progress
+                </button>
+                <button
+                  type="button"
+                  class="filter-chip"
+                  onclick="setFilter('status', 'completed', this)"
+                >
+                  Completed
+                </button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <p class="filter-title">Priority</p>
+              <div class="filter-chips" id="priority-chips">
+                <button
+                  type="button"
+                  class="filter-chip active"
+                  onclick="setFilter('priority', '', this)"
+                >
+                  All
+                </button>
+                <button
+                  type="button"
+                  class="filter-chip"
+                  onclick="setFilter('priority', 'high', this)"
+                >
+                  High
+                </button>
+                <button
+                  type="button"
+                  class="filter-chip"
+                  onclick="setFilter('priority', 'medium', this)"
+                >
+                  Medium
+                </button>
+                <button
+                  type="button"
+                  class="filter-chip"
+                  onclick="setFilter('priority', 'low', this)"
+                >
+                  Low
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="todos-list" class="space-y-4"></div>
+        </section>
+
+        <footer class="site-footer">
+          <p>Developed by Mahmoud Atta</p>
+        </footer>
+      </main>
+    </div>
+
+    <div id="add-todo-modal" class="modal">
+      <div class="glass modal-card">
+        <h2 class="panel-title mb-6">
+          <i class="fas fa-plus-circle"></i>
+          <span>Create New Task</span>
+        </h2>
+        <form onsubmit="handleAddTodo(event)" class="space-y-4">
+          <div>
+            <label class="form-label" for="todo-title">Title</label>
+            <input
+              type="text"
+              id="todo-title"
+              placeholder="Task title"
+              required
+              class="form-input"
+            />
+          </div>
+          <div>
+            <label class="form-label" for="todo-description">Description</label>
+            <textarea
+              id="todo-description"
+              placeholder="Task description"
+              rows="3"
+              class="form-input"
+            ></textarea>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="form-label" for="todo-priority">Priority</label>
+              <select id="todo-priority" class="form-input">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="todo-date">Date</label>
+              <input type="date" id="todo-date" class="form-input" />
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button type="submit" class="btn-primary flex-1 text-white">
+              <i class="fas fa-save"></i>
+              <span>Create Task</span>
+            </button>
+            <button
+              type="button"
+              onclick="closeModal('add-todo-modal')"
+              class="btn-secondary flex-1"
+            >
+              <i class="fas fa-times"></i>
+              <span>Close</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
