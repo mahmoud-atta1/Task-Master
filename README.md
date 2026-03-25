@@ -1,83 +1,60 @@
+<div align="center">
+
 # ✅ Task Master
 
-A full-stack task management web application built with **Node.js**, **Express**, **MongoDB**, and vanilla **HTML/CSS/JavaScript**.
+**A full-stack task management application — organize your work, track your progress.**
+
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+[Features](#-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started) • [API Reference](#-api-reference) • [Project Structure](#-project-structure)
+
+</div>
 
 ---
 
-## 📋 Table of Contents
+## 📖 About
 
-- [About](#about)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Environment Variables](#environment-variables)
-- [API Endpoints](#api-endpoints)
-- [License](#license)
+**Task Master** is a full-stack task management application that allows users to create, organize, and track their daily tasks. It features a secure JWT-based authentication system and a clean RESTful API backend.
 
 ---
 
-## About
+## ✨ Features
 
-Task Master is a clean and simple task management app that allows users to create, organize, and track their tasks. It features a secure authentication system and a RESTful API backend.
-
----
-
-## Features
-
-- 🔐 User authentication (Register & Login) with JWT
-- ✅ Create, read, update, and delete tasks
-- 🔒 Password hashing with bcryptjs
-- 🛡️ Security headers with Helmet
-- 📦 Input validation with express-validator
-- 📱 Responsive frontend built with HTML, CSS & JavaScript
+- 🔐 **Authentication** — Secure Register & Login with JWT
+- ✅ **Task Management** — Full CRUD (Create, Read, Update, Delete)
+- 🔒 **Password Security** — Hashing with bcryptjs
+- 🛡️ **HTTP Security** — Headers protected via Helmet
+- 📦 **Input Validation** — Server-side validation with express-validator
+- 📱 **Responsive Frontend** — Built with HTML, CSS & Vanilla JavaScript
 
 ---
 
-## Tech Stack
+## 🛠 Tech Stack
 
-### Backend
-| Technology | Purpose |
-|---|---|
-| Node.js + Express | Server & REST API |
-| MongoDB + Mongoose | Database |
-| JSON Web Token (JWT) | Authentication |
-| bcryptjs | Password hashing |
-| Helmet | Security headers |
-| CORS | Cross-origin requests |
-| express-validator | Input validation |
-| Morgan | HTTP request logging |
-| dotenv | Environment variables |
-
-### Frontend
-| Technology | Purpose |
-|---|---|
-| HTML5 | Structure |
-| CSS3 | Styling |
-| JavaScript (Vanilla) | Interactivity |
+| Layer | Technology |
+|-------|-----------|
+| **Runtime** | Node.js |
+| **Framework** | Express.js |
+| **Database** | MongoDB + Mongoose |
+| **Authentication** | JSON Web Token (JWT) |
+| **Validation** | express-validator |
+| **Security** | Helmet, CORS |
+| **Logging** | Morgan |
+| **Frontend** | HTML5, CSS3, Vanilla JavaScript |
+| **Dev Tools** | Nodemon, ESLint, Jest |
 
 ---
 
-## Project Structure
-
-```
-Task-Master/
-├── backend/
-│   └── app.js          # Main server entry point
-├── frontend/           # Static frontend files (HTML, CSS, JS)
-├── .gitignore
-├── package.json
-└── README.md
-```
-
----
-
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) v16+
-- [MongoDB](https://www.mongodb.com/) (local or Atlas)
+- [MongoDB](https://www.mongodb.com/) (local instance or MongoDB Atlas)
 
 ### Installation
 
@@ -92,72 +69,117 @@ Task-Master/
    npm install
    ```
 
-3. **Set up environment variables**
+3. **Configure environment variables**
 
-   Create a `.env` file in the root directory (see [Environment Variables](#environment-variables) below).
+   Create a `.env` file in the root directory:
+   ```env
+   PORT=5000
+   NODE_ENV=development
+   MONGO_URI=mongodb://127.0.0.1:27017/task_master
+   JWT_SECRET=replace-with-a-strong-secret
+   JWT_EXPIRES_IN=7d
+   ```
 
-4. **Run the app**
-
-   Development mode (with auto-reload):
+4. **Start the development server**
    ```bash
    npm run dev
    ```
 
-   Production mode:
-   ```bash
-   npm start
+5. **Open in your browser**
+   ```
+   http://localhost:5000
    ```
 
 ---
 
-## Environment Variables
-
-Create a `.env` file in the root of the project:
-
-```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-```
-
----
-
-## API Endpoints
-
-### Auth
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register a new user |
-| POST | `/api/auth/login` | Login and receive a JWT token |
-
-### Tasks
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/tasks` | Get all tasks for the logged-in user |
-| POST | `/api/tasks` | Create a new task |
-| PUT | `/api/tasks/:id` | Update a task by ID |
-| DELETE | `/api/tasks/:id` | Delete a task by ID |
-
-> All task endpoints require a valid JWT token in the `Authorization` header:
-> ```
-> Authorization: Bearer <your_token>
-> ```
-
----
-
-## Scripts
+## 📜 Available Scripts
 
 ```bash
-npm start        # Start the server
-npm run dev      # Start with nodemon (auto-reload)
-npm test         # Run tests with Jest
-npm run lint     # Lint backend code with ESLint
+npm run dev     # Start development server with auto-reload (nodemon)
+npm start       # Start production server
+npm run lint    # Lint backend code with ESLint
+npm test        # Run Jest test suite
 ```
-
 
 ---
 
-> Made with ❤️ by [mahmoud-atta1](https://github.com/mahmoud-atta1)
+## 📡 API Reference
 
+All endpoints are prefixed with `/api`. Protected routes require a Bearer token in the `Authorization` header.
+
+```
+Authorization: Bearer <your_token>
+```
+
+### 🔑 Authentication
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| `POST` | `/auth/register` | Public | Register a new user |
+| `POST` | `/auth/login` | Public | Login and receive JWT |
+
+### ✅ Tasks
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| `GET` | `/tasks` | User | Get all tasks for current user |
+| `POST` | `/tasks` | User | Create a new task |
+| `PUT` | `/tasks/:id` | User | Update a task by ID |
+| `DELETE` | `/tasks/:id` | User | Delete a task by ID |
+
+### 🔄 Task Flow
+
+```
+Create Task
+     │
+     ▼
+ [pending] ──── Update ────► [in_progress]
+                                   │
+                                   ▼
+                             [completed]
+```
+
+---
+
+## 📁 Project Structure
+
+```
+Task-Master/
+├── backend/
+│   ├── controllers/       # Route handler logic
+│   ├── models/            # Mongoose schemas
+│   ├── routes/            # Express route definitions
+│   ├── middleware/        # Auth & error handling
+│   └── app.js             # Server entry point
+├── frontend/
+│   ├── *.html             # App pages
+│   ├── css/               # Stylesheets
+│   └── js/                # Client-side scripts
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+---
+
+## 🔒 Security
+
+- Passwords are hashed using **bcryptjs**
+- Routes are protected via **JWT middleware**
+- HTTP headers secured with **Helmet**
+- Input sanitized and validated with **express-validator**
+- Cross-origin requests handled safely with **CORS**
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+
+Made with ❤️ by [mahmoud-atta1](https://github.com/mahmoud-atta1)
+
+</div>
