@@ -29,7 +29,7 @@
 - 🔒 **Password Security** — Hashing with bcryptjs
 - 🛡️ **HTTP Security** — Headers protected via Helmet
 - 📦 **Input Validation** — Server-side validation with express-validator
-- 📱 **Responsive Frontend** — Built with HTML, CSS & Vanilla JavaScript
+- 📱 **Responsive Frontend** — Built with HTML, CSS && Vanilla JavaScript
 
 ---
 
