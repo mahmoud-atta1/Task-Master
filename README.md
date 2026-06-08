@@ -168,7 +168,7 @@ Task-Master/
 - Routes are protected via **JWT middleware**
 - HTTP headers secured with **Helmet**
 - Input sanitized and validated with **express-validator**
-- Cross-origin requests handled safely with **CORS**
+- Cross-origin requests handled safely with **CORS*
 
 ---
 
